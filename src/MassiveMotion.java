@@ -2,9 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class MassiveMotion extends JPanel implements ActionListener {
-
+    ArrayList<String> temp;
     protected Timer tm;
 
     // TODO: Consider removing the next two lines (coordinates for two balls)
