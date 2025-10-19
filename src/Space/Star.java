@@ -1,3 +1,8 @@
+/**
+ * Represents a star object within the simulation, extending the generic SpaceObject.
+ * Maintains position, velocity, and color specific to stars.
+ */
+
 package Space;
 
 import java.awt.*;

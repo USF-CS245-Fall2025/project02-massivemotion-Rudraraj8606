@@ -1,0 +1,6 @@
+ArrayListCheck
+    - why While() over for() to remove elements
+      -> if I am using for loop it does not remove every element and stops at
+         an incomplete position.
+         This is because the way I am arranging the array after every deletion.
+         I will explain that thing in code review it would be easier to explain 👍.

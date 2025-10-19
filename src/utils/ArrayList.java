@@ -66,7 +66,6 @@ public class ArrayList<T> implements List<T> {
             System.arraycopy(arr, index + 1, arr, index, elementsToMove);
         }
         arr[--size] = null;
-//        size--;
         return removed;
     }
 

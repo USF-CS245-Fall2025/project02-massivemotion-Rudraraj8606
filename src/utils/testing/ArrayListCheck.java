@@ -29,11 +29,18 @@ public class ArrayListCheck {
         System.out.println(data.get(8)); // must be null
 
         //delete everything
+//        for (int i = 0; i < data.size(); i++) {
+//            data.remove(i);
+//        }
         while (data.size() > 0) {
             data.remove(data.size()-1);
         }
         System.out.println();
         System.out.println("-".repeat(20));
+
+        for (int i = 0; i < data.size(); i++) {
+            System.out.println(data.get(i));
+        }
 
         // printing
         System.out.println("final size -> " + data.size());

@@ -1,3 +1,9 @@
+/**
+ * Simulates a star system with dynamic star and comet objects on a 2D canvas.
+ * Handles celestial object generation, animation updates, and configuration via property file.
+ * Implements ActionListener for periodic animation, and acts as the view for the simulation.
+ */
+
 import Space.Comet;
 import Space.SpaceObject;
 import Space.Star;
@@ -73,6 +79,7 @@ public class MassiveMotion extends JPanel implements ActionListener {
         objects.add(new Star(starSize, Color.RED,starPosx,starPosY,starVelox,starVeloY));
 
         if (random.nextDouble() < gen_X) {
+            // making sure that comets don't come from same posi
             int x = random.nextBoolean() ? 0 : (width - cometSize);
             int y = random.nextInt(Math.max(1, height - cometSize));
             int vx = nonZeroVelocity(velo);
@@ -81,6 +88,7 @@ public class MassiveMotion extends JPanel implements ActionListener {
         }
 
         if (random.nextDouble() < gen_Y) {
+            // making sure that comets don't come from same posi
             int x = random.nextInt(Math.max(1, width - cometSize));
             int y = random.nextBoolean() ? 0 : (height - cometSize);
             int vx = nonZeroVelocity(velo);
@@ -90,6 +98,7 @@ public class MassiveMotion extends JPanel implements ActionListener {
     }
 
     private int nonZeroVelocity(int bodyVelocity) {
+        // ensuring the velocity is between (-x <= V < 0) u (0 < V <= x)
         int v;
         do {
             v = random.nextInt(2 * bodyVelocity + 1) - bodyVelocity;
@@ -101,7 +110,7 @@ public class MassiveMotion extends JPanel implements ActionListener {
         super.paintComponent(g); // Probably best you leave this as is.
 
         for (int i = 0; i < objects.size(); i++) {
-            SpaceObject obj = objects.get(i); // or Comet, Celestials depending on your class
+            SpaceObject obj = objects.get(i);
             obj.draw(g);
         }
 
@@ -117,6 +126,9 @@ public class MassiveMotion extends JPanel implements ActionListener {
 
         for (int i = 0; i < objects.size(); i++) {
             objects.get(i).move();
+            if(objects.get(i).isOffScreen(width, height)){
+                objects.remove(i);
+            }
         }
 
         maybeSpawnComets();
@@ -126,9 +138,8 @@ public class MassiveMotion extends JPanel implements ActionListener {
     }
 
     public static void main(String[] args) throws IOException {
-        readFile(args[1]);
+        readFile(args[0]);
         System.out.println("Massive Motion starting...");
-        // MassiveMotion mm = new MassiveMotion(args[0]);
         MassiveMotion mm = new MassiveMotion();
 
         JFrame jf = new JFrame();

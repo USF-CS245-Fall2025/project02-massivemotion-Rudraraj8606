@@ -1,3 +1,9 @@
+/**
+ * parent class for all space objects (stars, comets) in the simulation.
+ * Encapsulates position, size, color, and velocity properties.
+ * Provides basic movement and rendering capabilities.
+ */
+
 package Space;
 
 import java.awt.*;

@@ -1,3 +1,8 @@
+/**
+ * Represents a comet object within the simulation, extending SpaceObject.
+ * Maintains comet position and provides movement logic for comets.
+ */
+
 package Space;
 
 import java.awt.*;
