@@ -59,7 +59,6 @@ public class MassiveMotion extends JPanel implements ActionListener {
         objects.add(new Star(starSize, Color.RED,starPosx,starPosY,starVelox,starVeloY));
 
         if (random.nextDouble() < gen_X) {
-            // Spawn comet on top or bottom edge (50/50)
             int x = random.nextInt(Math.max(1, width - cometSize));
             int y = random.nextBoolean() ? 0 : (height - cometSize);
 
