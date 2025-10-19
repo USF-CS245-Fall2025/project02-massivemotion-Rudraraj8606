@@ -6,21 +6,23 @@ public class SpaceObject {
     private int x, y;
     private int size;
     private Color color;
-    private int velo;
+    private int vx;
+    private int vy;
 
-    public SpaceObject(int x, int y, int size, int velo, Color color) {
+    public SpaceObject(int x, int y, int size, int veloX,int veloY, Color color) {
         this.x = x;
         this.y = y;
         this.size = size;
         this.color = color;
-        this.velo = velo;
+        this.vx = veloX;
+        this.vy = veloY;
     }
 
     public SpaceObject(){}
 
     public void move(){
-        x += velo;
-        y += velo;
+        x += vx;
+        y += vy;
     }
 
     public void draw(Graphics g) {

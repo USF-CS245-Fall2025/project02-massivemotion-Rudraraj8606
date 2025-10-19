@@ -1,17 +1,14 @@
 package Space;
 
 import java.awt.*;
-import java.util.Random;
 
 public class Comet extends SpaceObject{
     private int x, y;
-//    private int bodyVelocity;
 
-    public Comet(int x, int y, int bodyVelocity, int size, Color color) {
-        super(x, y, size,bodyVelocity, color);
+    public Comet(int x, int y, int vx, int vy, int size, Color color) {
+        super(x, y, size, vx, vy, color);
         this.x = x;
         this.y = y;
-//        this.bodyVelocity = bodyVelocity;
     }
 
     public double x() {
@@ -21,9 +18,4 @@ public class Comet extends SpaceObject{
     public double y() {
         return y;
     }
-
-//    public void move(){
-//        this.x+=bodyVelocity;
-//        this.y+=bodyVelocity;
-//    }
 }

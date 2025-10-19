@@ -9,7 +9,7 @@ public class Star extends SpaceObject {
     private int veloY;
 
     public Star(int size, Color color, int posX, int posY, int veloX, int veloY) {
-        super(posX, posY, size, veloX, color);
+        super(posX, posY, size, veloX, veloY, color);
         this.posX = posX;
         this.posY = posY;
         this.veloX = veloX;

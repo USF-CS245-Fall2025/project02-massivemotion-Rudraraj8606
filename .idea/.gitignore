@@ -1,3 +1,11 @@
-# Default ignored files
-/shelf/
-/workspace.xml
+# Ignore everything
+*
+
+# But keep directories (so folder structure is preserved)
+!*/
+
+# Keep all .java files
+!*.java
+
+# Keep all .txt files
+!*.txt

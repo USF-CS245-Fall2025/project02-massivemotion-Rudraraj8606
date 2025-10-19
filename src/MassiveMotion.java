@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
@@ -21,15 +22,28 @@ public class MassiveMotion extends JPanel implements ActionListener {
     private Random random = new Random();
 
     // reads config file
-    private static void readFile() throws IOException {
-        FileReader reader = new FileReader("MassiveMotion.txt");
-        p.load(reader);
+    private static void readFile(String fileName) throws IOException {
+        if(fileName == null){
+            System.out.println("reading from default file");
+            try {
+                FileReader reader = new FileReader("MassiveMotion.txt");
+                p.load(reader);
+            } catch (FileNotFoundException e) {
+                System.err.println("Error: The default file 'MassiveMotion.txt' " + " was not found.");
+            }
+        }
+        try {
+            assert fileName != null;
+            FileReader reader = new FileReader(fileName);
+            p.load(reader);
+        } catch (FileNotFoundException e) {
+            System.err.println("Error: The file '" + fileName + "' was not found.");
+        }
     }
 
 
     // constructor
     public MassiveMotion(){
-        // TODO: insert your code to read from configuration file here.
         tm = new Timer(Helper.toInteger(p.getProperty("timer_delay")), this); // TODO: Replace the first argument with delay with value from config file.
         String list = p.getProperty("list");
         if (list.equals("arraylist")) {
@@ -59,18 +73,28 @@ public class MassiveMotion extends JPanel implements ActionListener {
         objects.add(new Star(starSize, Color.RED,starPosx,starPosY,starVelox,starVeloY));
 
         if (random.nextDouble() < gen_X) {
-            int x = random.nextInt(Math.max(1, width - cometSize));
-            int y = random.nextBoolean() ? 0 : (height - cometSize);
-
-            objects.add(new Comet(x, y, velo, cometSize, Color.BLACK));
+            int x = random.nextBoolean() ? 0 : (width - cometSize);
+            int y = random.nextInt(Math.max(1, height - cometSize));
+            int vx = nonZeroVelocity(velo);
+            int vy = nonZeroVelocity(velo);
+            objects.add(new Comet(x, y, vx,vy, cometSize, Color.BLACK));
         }
 
         if (random.nextDouble() < gen_Y) {
-            int x = random.nextBoolean() ? 0 : (Helper.toInteger(p.getProperty("window_size_x")) - Helper.toInteger(p.getProperty("body_size")));
-            int y = random.nextInt(Math.max(1, height - cometSize));
-
-            objects.add(new Comet(x, y, velo, cometSize, Color.BLACK));
+            int x = random.nextInt(Math.max(1, width - cometSize));
+            int y = random.nextBoolean() ? 0 : (height - cometSize);
+            int vx = nonZeroVelocity(velo);
+            int vy = nonZeroVelocity(velo);
+            objects.add(new Comet(x, y, vx,vy, cometSize, Color.BLACK));
         }
+    }
+
+    private int nonZeroVelocity(int bodyVelocity) {
+        int v;
+        do {
+            v = random.nextInt(2 * bodyVelocity + 1) - bodyVelocity;
+        } while (v == 0);
+        return v;
     }
 
     public void paintComponent(Graphics g) {
@@ -88,8 +112,6 @@ public class MassiveMotion extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        // TODO: Change the location of each ball. Here's an example of them moving across the screen:
-        //       ... but to be clear, you should change this.
         int width = Helper.toInteger(p.getProperty("window_size_x"));
         int height = Helper.toInteger(p.getProperty("window_size_y"));
 
@@ -104,7 +126,7 @@ public class MassiveMotion extends JPanel implements ActionListener {
     }
 
     public static void main(String[] args) throws IOException {
-        readFile();
+        readFile(args[1]);
         System.out.println("Massive Motion starting...");
         // MassiveMotion mm = new MassiveMotion(args[0]);
         MassiveMotion mm = new MassiveMotion();
