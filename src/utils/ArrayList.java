@@ -30,9 +30,7 @@ public class ArrayList<T> implements List<T> {
         if(size == arr.length){
             arr = (T[]) growArr();
         }
-        System.arraycopy(arr, index,
-                arr, index + 1,
-                size - index);
+        System.arraycopy(arr, index, arr, index + 1,size - index);
         arr[index] = element;
         size++;
     }
@@ -68,7 +66,7 @@ public class ArrayList<T> implements List<T> {
             System.arraycopy(arr, index + 1, arr, index, elementsToMove);
         }
         arr[--size] = null;
-        size--;
+//        size--;
         return removed;
     }
 
