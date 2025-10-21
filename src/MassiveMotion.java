@@ -29,21 +29,12 @@ public class MassiveMotion extends JPanel implements ActionListener {
 
     // reads config file
     private static void readFile(String fileName) throws IOException {
-        if(fileName == null){
-            System.out.println("reading from default file");
-            try {
-                FileReader reader = new FileReader("MassiveMotion.txt");
-                p.load(reader);
-            } catch (FileNotFoundException e) {
-                System.err.println("Error: The default file 'MassiveMotion.txt' " + " was not found.");
-            }
-        }
         try {
-            assert fileName != null;
             FileReader reader = new FileReader(fileName);
             p.load(reader);
         } catch (FileNotFoundException e) {
             System.err.println("Error: The file '" + fileName + "' was not found.");
+            System.exit(1);
         }
     }
 
@@ -138,7 +129,7 @@ public class MassiveMotion extends JPanel implements ActionListener {
     }
 
     public static void main(String[] args) throws IOException {
-        readFile(args[0]);
+        readFile(args.length == 0 ? "MassiveMotn.txt" : args[0]);
         System.out.println("Massive Motion starting...");
         MassiveMotion mm = new MassiveMotion();
 

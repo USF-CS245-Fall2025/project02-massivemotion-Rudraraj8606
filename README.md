@@ -111,7 +111,7 @@ Justification for design choices available in `WhyThisOverThat.txt`.
 - Non-obvious logic is documented with inline comments
 - Rationale and design decisions included (see `WhyThisOverThat.txt`)
 
-## Author & License
+## Author
 - Code by Student: Rudraraj
 - Developed for CS 245, University of San Francisco, Fall 2025
 
