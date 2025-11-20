@@ -23,12 +23,23 @@ public class DoublyLinkedList<T> implements List<T> {
         size = 0;
     }
 
+    /**
+     * checks the range of the given input
+     * throws the error if not in a particular range
+     * time complexity O(1)
+     * @param index
+     */
     private void rangeCheck(int index) {
         if (index > size || index < 0) {
             throw new IndexOutOfBoundsException("not allowed !");
         }
     }
 
+    /**
+     * insert element at a specific position
+     * @param index the position to add the data
+     * @param element the data to add at the position
+     */
     @Override
     public void add(int index, T element) {
         rangeCheck(index);
@@ -62,6 +73,11 @@ public class DoublyLinkedList<T> implements List<T> {
         size++;
     }
 
+    /**
+     * Returns the node at the specified index
+     * @param index the index of the node to retrieve
+     * @return the node at the given index
+     */
     private Node<T> nodeAt(int index){
         Node<T> current;
         if (index < size / 2) {
@@ -78,6 +94,11 @@ public class DoublyLinkedList<T> implements List<T> {
         return current;
     }
 
+    /**
+     * appends the specified element to the end of the list
+     * @param element data to add
+     * @return boolean
+     */
     @Override
     public boolean add(T element) {
         Node<T> ele = new Node<>(element);
@@ -91,11 +112,21 @@ public class DoublyLinkedList<T> implements List<T> {
         return true;
     }
 
+    /**
+     * returns the element at the specified position in this list
+     * @param index the position to retrieve the data
+     * @return T
+     */
     @Override
     public T get(int index) {
         return nodeAt(index).data;
     }
 
+    /**
+     * removes the element at the specified position in this list
+     * @param index the position to remove the data
+     * @return the element
+     */
     @Override
     public T remove(int index) {
         Node<T> ele = nodeAt(index);
@@ -116,6 +147,9 @@ public class DoublyLinkedList<T> implements List<T> {
         return val;
     }
 
+    /**
+     * @return the size of the list
+     */
     @Override
     public int size() {
         return size;

@@ -21,6 +21,10 @@ public class Star extends SpaceObject {
         this.veloY = veloY;
     }
 
+    /**
+     * the function to help move the star
+     * by adding the veloX and veloY
+     */
     @Override
     public void move() {
         posX += veloX;

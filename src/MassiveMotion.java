@@ -54,6 +54,15 @@ public class MassiveMotion extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * the function creates/emits comets randomly based on
+     * the probability each edges the x and y axises have
+     * for example lets say there is a 0.75 probability for x-axis
+     * then 3 out of four times the comet will appear from that particular
+     * axis. And it doesn't matter whether top or bottom
+     * does the same for y-axis and doesn't matter left or right.
+     * it also assigns the velocity to each comet
+     */
     public void maybeSpawnComets() {
         double gen_X = Helper.toDouble(p.getProperty("gen_x"));
         double gen_Y = Helper.toDouble(p.getProperty("gen_y"));
@@ -88,6 +97,11 @@ public class MassiveMotion extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * this ensures that the velocity never get to zero
+     * basically (-x <= V < 0) u (0 < V <= x)
+     *
+     */
     private int nonZeroVelocity(int bodyVelocity) {
         // ensuring the velocity is between (-x <= V < 0) u (0 < V <= x)
         int v;
@@ -97,6 +111,12 @@ public class MassiveMotion extends JPanel implements ActionListener {
         return v;
     }
 
+    /**
+     * Paints the component by drawing all space objects on it.
+     * @param g the <code>Graphics</code> object to protect
+     * this method will be called automatically whenever the component needs to be
+     * redrawn.
+     */
     public void paintComponent(Graphics g) {
         super.paintComponent(g); // Probably best you leave this as is.
 
@@ -109,7 +129,12 @@ public class MassiveMotion extends JPanel implements ActionListener {
         tm.start();
     }
 
-
+    /**
+     * his method moves each object in the objects list, removes any that have
+     * moved off-screen.
+     * spawn new comets.
+     * @param actionEvent the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         int width = Helper.toInteger(p.getProperty("window_size_x"));

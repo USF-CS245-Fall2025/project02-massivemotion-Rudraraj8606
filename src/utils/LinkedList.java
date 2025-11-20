@@ -21,12 +21,23 @@ public class LinkedList<T> implements List<T> {
         size = 0;
     }
 
+    /**
+     * checks the range of the given input
+     * throws the error if not in a particular range
+     * time complexity O(1)
+     * @param index
+     */
     private void rangeCheck(int index) {
         if (index > size || index < 0) {
             throw new IndexOutOfBoundsException("not allowed !");
         }
     }
 
+    /**
+     * inserts the element at the specified position in this list
+     * @param index the position
+     * @param element the data to add
+     */
     @Override
     public void add(int index, T element) {
         rangeCheck(index);
@@ -46,6 +57,11 @@ public class LinkedList<T> implements List<T> {
         size++;
     }
 
+    /**
+     * adds the specified element to the end of this list
+     * @param element the data
+     * @return boolean
+     */
     @Override
     public boolean add(T element) {
         if(head == null){
@@ -61,6 +77,11 @@ public class LinkedList<T> implements List<T> {
         return true;
     }
 
+    /**
+     * returns the element at the specified position in this list
+     * @param index the position
+     * @return T
+     */
     @Override
     public T get(int index) {
         rangeCheck(index);
@@ -71,6 +92,11 @@ public class LinkedList<T> implements List<T> {
         return curr.data;
     }
 
+    /**
+     * removes the element at the specified position in this list
+     * @param index the position
+     * @return T
+     */
     @Override
     public T remove(int index) {
         if (index == 0) {
@@ -90,6 +116,10 @@ public class LinkedList<T> implements List<T> {
         return val;
     }
 
+    /**
+     *
+     * @return the size of the list
+     */
     @Override
     public int size() {
         return size;

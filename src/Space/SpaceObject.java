@@ -26,16 +26,30 @@ public class SpaceObject {
 
     public SpaceObject(){}
 
+    /**
+     * the function to help move the space objects
+     * by adding the vx and vy
+     */
     public void move(){
         x += vx;
         y += vy;
     }
 
+    /**
+     * draws the object as a filled oval
+     * @param g the graphic context on which to draw
+     */
     public void draw(Graphics g) {
         g.setColor(color);
         g.fillOval(x, y, size, size);
     }
 
+    /**
+     * checks whether the object is outside the visible screen bounds
+     * @param windowWidth
+     * @param windowHeight
+     * @return boolean
+     */
     public boolean isOffScreen(int windowWidth, int windowHeight) {
         return x < -size || x > windowWidth || y < -size || y > windowHeight;
     }
